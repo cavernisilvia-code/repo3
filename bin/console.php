@@ -51,6 +51,7 @@ switch ($command) {
         echo "  php bin/console.php books:list\n";
         echo "  php bin/console.php book:lend B1 M1\n";
         echo "  php bin/console.php book:return B1\n";
+        echo "  members:list Elenca i membri\n";
         exit(0);
 
     case 'books:list':
@@ -87,6 +88,20 @@ switch ($command) {
 
         echo $service->returnBook($bookId, $todayYmd) . "\n";
         exit(0);
+
+    case 'members:list':
+    $members = $service->listMembers();
+    if (empty($members)) {
+        echo "Nessun membro.\n";
+    } else {
+        echo "ID | NOME\n";
+        foreach ($members as $member) {
+            echo "{$member->getId()} | {$member->getName()}\n";
+        }
+    }
+    exit(0);
+
+
 
     default:
         echo "Comando sconosciuto: $command\n";
