@@ -41,17 +41,33 @@ $todayYmd = date('Y-m-d'); // nel CSV salviamo sempre in formato stabile
 
 switch ($command) {
     case 'help':
-        echo "Biblioteca CLI - comandi disponibili:\n";
-        echo "  help                      Mostra questa guida\n";
-        echo "  books:list                Elenca libri\n";
-        echo "  loans:list                Elenca prestiti aperti\n";
-        echo "  book:lend <BOOK> <MEM>    Presta un libro a un membro\n";
-        echo "  book:return <BOOK>        Registra la restituzione di un libro\n";
+        echo "Biblioteca CLI\n";
+        echo "Questi sono i comandi disponibili:\n";
+        echo "  help\n";                     
+        echo "Mostra questa guida\n";
+        echo "  books:list\n";                
+        echo "Elenca libri\n";
+        echo "  loans:list\n";                
+        echo "Elenca prestiti aperti\n";
+        echo "  book:lend <BOOK> <MEM>\n";    
+        echo "Presta un libro a un membro\n";
+        echo "  book:return <BOOK>\n";        
+        echo "Registra la restituzione di un libro\n";
+        echo " members:list\n";
+        echo "Elenca i membri\n";
         echo "\nEsempi:\n";
-        echo "  php bin/console.php books:list\n";
-        echo "  php bin/console.php book:lend B1 M1\n";
-        echo "  php bin/console.php book:return B1\n";
-        echo "  members:list Elenca i membri\n";
+        echo "  php bin/console.php books:list\n"; 
+        
+        echo "  php bin/console.php book:lend B1 M1\n"; 
+        
+        echo "  php bin/console.php book:return B1\n"; 
+        
+        echo "  php bin/console.php members:list\n"; 
+        
+        echo "\nConfigurazione (.env):\n";
+        echo "DATA_DIR ";
+        echo "DATE_FORMAT";
+        echo  "MAX_LOANS_PER_MEMBER";
         exit(0);
 
     case 'books:list':
@@ -89,17 +105,21 @@ switch ($command) {
         echo $service->returnBook($bookId, $todayYmd) . "\n";
         exit(0);
 
-    case 'members:list':
+    
+case 'members:list':
     $members = $service->listMembers();
+
     if (empty($members)) {
         echo "Nessun membro.\n";
     } else {
         echo "ID | NOME\n";
         foreach ($members as $member) {
-            echo "{$member->getId()} | {$member->getName()}\n";
+            echo "{$member->id()} | {$member->fullName()}\n";
         }
     }
     exit(0);
+
+
 
 
 

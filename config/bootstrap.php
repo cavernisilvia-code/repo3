@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -77,8 +78,5 @@ spl_autoload_register(function (string $className): void {
 // Carica .env (se presente)
 loadEnv(__DIR__ . '/../.env');
 
-/*
-public function listMembers(): array
-{
-    return $this->membersRepo->all(); // assuming all() restituisce array di oggetti Member
-} */
+
+

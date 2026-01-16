@@ -123,4 +123,11 @@ final class LibraryService
 
         return $out;
     }
+
+public function listMembers(): array
+{
+    return $this->members->findAll();
+}
+
+
 }
