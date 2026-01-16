@@ -32,7 +32,8 @@ final class LibraryService
         foreach ($this->books->findAll() as $book) {
             $status = $book->isAvailable() ? 'DISPONIBILE' : 'PRESTITO';
             $out[] = sprintf(
-                '%s | %s | %s | %s',
+                '%s | %s | %s | %s| ID breve',
+                $book->header(),
                 $book->id(),
                 $book->title(),
                 $book->author(),
