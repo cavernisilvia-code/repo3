@@ -46,7 +46,7 @@ final class LibraryService
     {
         $book = $this->books->findById($bookId);
         if ($book === null) {
-            return "Errore: libro non trovato (id=$bookId).";
+            return "id=<MEMBER_ID>. Suggerimento: usa members:list.";
         }
 
         $member = $this->members->findById($memberId);
