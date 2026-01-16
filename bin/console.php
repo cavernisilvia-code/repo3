@@ -65,10 +65,16 @@ switch ($command) {
         echo "  php bin/console.php members:list\n"; 
         
         echo "\nConfigurazione (.env):\n";
-        echo "DATA_DIR ";
-        echo "DATE_FORMAT";
-        echo  "MAX_LOANS_PER_MEMBER";
+        echo "DATA_DIR n";
+        echo "DATE_FORMAT = $todayYmd \n";
+        echo  "MAX_LOANS_PER_MEMBER = 2\n";
         exit(0);
+
+/* .env
+DATA_DIR = ./data
+DATE_FORMAT = d/m/Y
+MAX_LOANS_PER_MEMBER = 2 */
+
 
     case 'books:list':
         foreach ($service->listBooks() as $line) {
@@ -106,11 +112,11 @@ switch ($command) {
         exit(0);
 
     
-case 'members:list':
+case 'members:list': //if (bool)$service->listMembers; altro metodo
     $members = $service->listMembers();
 
     if (empty($members)) {
-        echo "Nessun membro.\n";
+        echo "Nessun membro\n";
     } else {
         echo "ID | NOME\n";
         foreach ($members as $member) {
@@ -120,6 +126,15 @@ case 'members:list':
     exit(0);
 
 
+case 'book:status': //ticket4
+    $bookId = $args[1] ?? '';
+    if ($bookId === '') {
+        echo "Nessun libro\n";
+        exit(1);
+    }
+
+    echo $service->bookStatus($bookId) . "\n";
+    exit(0);
 
 
 

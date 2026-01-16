@@ -129,5 +129,8 @@ public function listMembers(): array
     return $this->members->findAll();
 }
 
+public function bookStatus(string $bookId): array{
+    
+}
 
 }
