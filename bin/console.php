@@ -5,6 +5,7 @@ declare(strict_types=1);
  * Entry point CLI.
  * Esempi:
  *   php bin/console.php help
+ * 
  *   php bin/console.php books:list
  *   php bin/console.php loans:list
  *   php bin/console.php book:lend B1 M1
